@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Facts Explorer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1c1e26 0%, #31344e 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .fact-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        #factDisplay {
+            color: #fff;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            min-height: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Space Facts</h1>
+        <div class="fact-container">
+            <div id="factDisplay"></div>
+            <button id="nextFact">Next Fact</button>
+        </div>
+    </div>
+
+    <script>
+        const spaceFacts = [
+            { id: 1, fact: "One day on Venus is longer than one year on Earth. Venus takes 243 Earth days to rotate on its axis." },
+            { id: 2, fact: "The Sun accounts for 99.86% of the total mass in our solar system." },
+            { id: 3, fact: "The Moon has no atmosphere, so footprints left by astronauts could last for millions of years." },
+            { id: 4, fact: "Jupiter is so large that it could fit all the other planets in our solar system inside it." },
+            { id: 5, fact: "There are more stars in the universe than grains of sand on all the beaches on Earth." },
+            { id: 6, fact: "A teaspoon of neutron star material would weigh about 6 billion tons." },
+            { id: 7, fact: "Mars has the largest dust storms in the solar system, lasting for months and covering the entire planet." },
+            { id: 8, fact: "Saturn's rings are composed mostly of ice particles and some rocky debris." },
+            { id: 9, fact: "The Milky Way galaxy is about 100,000 light-years across." },
+            { id: 10, fact: "Olympus Mons, the largest volcano in the solar system, is roughly the size of Arizona." }
+        ];
+
+        let currentFactIndex = 0;
+        const factDisplay = document.getElementById('factDisplay');
+        const nextFactButton = document.getElementById('nextFact');
+
+        // Display the first fact
+        displayFact(currentFactIndex);
+
+        // Event Listener for Next Fact Button
+        nextFactButton.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex + 1) % spaceFacts.length;
+            displayFact(currentFactIndex);
+        });
+
+        // Function to Display Fact
+        function displayFact(index) {
+            const fact = spaceFacts[index];
+            factDisplay.innerHTML = `
+                <p><strong>Fact #${fact.id}:</strong></p>
+                <p>${fact.fact}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
